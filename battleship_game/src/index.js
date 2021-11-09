@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import PlayerBoard from './PlayerBoard';
-import ComputerBoard from './ComputerBoard';
+import Game from './Game';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
 
-  <PlayerBoard />,
+  <Game />,
   document.getElementById('root')
 );
 
