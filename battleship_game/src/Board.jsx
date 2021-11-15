@@ -5,13 +5,14 @@ import './css/Board.css';
 export const ROWS = 10;
 export const COLUMNS = 10;
 
-// export const SQUARE_OBJ = {
-//     unique_id: '',
-//     empty: 'empty',
-//     hit: 'hit',
-//     miss: 'miss',
-//     ship_sunk: 'ship_sunk',
-// };
+export const SQUARE_OBJ = {
+    empty: 'empty',
+    hit: 'hit',
+    miss: 'miss',
+    destroyed_ship: 'destroyed_ship',
+};
+
+
 
 export default function Board() {
     const [boardState, setBoard]= useState([
@@ -36,8 +37,13 @@ export default function Board() {
                 />)) 
         }
     }
-
     return (<div id = "board">
         {boardComponent}
     </div>)
 }
+
+export const placingShips = () => {
+
+}
+
+    
