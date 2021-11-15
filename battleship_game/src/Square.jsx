@@ -1,4 +1,4 @@
-import "./Square.css";
+import "./css/Square.css";
 import { useState } from "react";
 
 export default function Square(props) {

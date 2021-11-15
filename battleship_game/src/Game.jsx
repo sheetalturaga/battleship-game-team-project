@@ -5,6 +5,7 @@ import PlayerBoard from './PlayerBoard';
 import ComputerBoard from './ComputerBoard';
 
 export default function Game() {
+    
     return (
         <div>
             Welcome to BattleShip

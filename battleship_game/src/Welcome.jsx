@@ -12,7 +12,12 @@ export default function Welcome() {
                 is hit, the tiles will turn black. Whoever hits all ships, 
                 WINS!
             </p>
-            <button>Start Game</button>
+            <h4>Start Game</h4>
+            <span>
+                <button>Normal Game</button>
+                <button>Free Play</button>
+            </span>
+            
         </div>
     )
 }

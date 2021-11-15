@@ -1,6 +1,6 @@
 import Square from './Square';
 import { useState } from 'react';
-import './Board.css';
+import './css/Board.css';
 
 export const ROWS = 10;
 export const COLUMNS = 10;
