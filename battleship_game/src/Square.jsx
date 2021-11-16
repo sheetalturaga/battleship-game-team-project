@@ -19,8 +19,11 @@ export default function Square(props) {
     const [initialState, setState] = useState('');
     
     let backgroundColor = 'background';
-    if(initialState === '') {
+    if(initialState === 'X') {
         backgroundColor = 'player-miss';
+    }
+    else if (initialState === 'O') {
+        backgroundColor = 'player-hit';
     }
 
         return (<div onClick={() => {
@@ -29,12 +32,19 @@ export default function Square(props) {
 
             const boardState = props.boardState;
 
+            //if it's a miss
             if(backgroundColor === 'background') {
                 // check if its hit / miss
                 // check if it's a ship
-                setState('0');
-                boardState[x][y] = 'ship-color';
+                setState('X');
+
+                // boardState[x][y] = 'ship-color';
                 props.onClick([...boardState]);
             }
-        }}id = "square"></div>)
+            //if it's a hit
+            // else if (backgroundColor === 'background') {
+            //     setState('O');
+            //     props.onClick([...boardState]);
+            // }
+        }}id = "square" class = {backgroundColor}></div>)
 }
