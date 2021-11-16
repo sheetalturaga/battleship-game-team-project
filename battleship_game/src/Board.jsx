@@ -2,6 +2,7 @@ import Square from './Square';
 import { useState } from 'react';
 import './css/Board.css';
 
+
 export const ROWS = 10;
 export const COLUMNS = 10;
 export const coordsOfShipsPlaced = [];
@@ -37,6 +38,7 @@ export default function Board() {
     ]);
     const boardComponent = [];
 
+    const [shipState, setShipState] = useState();
     for (let i = 0; i < boardState.length; i++) {
         let row = boardState[i];
         for (let j = 0; j < row.length; j++) {
@@ -45,7 +47,17 @@ export default function Board() {
                 />)) 
         }
     }
-    placingShips(boardComponent)
+    const newBoardComponent = boardComponent;
+    const boardWithShips = placingShips(newBoardComponent);
+    // for (let i = 0; i < boardState.length; i++) {
+    //     let row = boardState[i];
+    //     for (let j = 0; j < row.length; j++) {
+    //         newBoardComponent.push((<Square symbol={boardState[i][j]} 
+    //             onClick={setShipState} shipState={shipState} x={i} y={j} 
+    //             />)) 
+    //     }
+    // }
+
     return (<div id = "board">
         {boardComponent}
     </div>)
@@ -64,8 +76,8 @@ export const generateRandomNumber = (start, end) => {
 // }
 
 export const generateRandomCoordinates = (boardComponent, length, directionForShip) => {
-    const x = 0;
-    const y = 0;
+    let x = 0;
+    let y = 0;
     if (directionForShip === 'horizontal' && length <= boardComponent.length && length > boardComponent[0].length) {
         x = generateRandomNumber(0, boardComponent.length - length);
         y = generateRandomNumber(0, boardComponent.length - 1);
@@ -87,13 +99,15 @@ export const generateRandomCoordinates = (boardComponent, length, directionForSh
 // push square and set color for ship
 export const placingShips = (boardComponent) => { 
     for (const ship in SHIPS_OBJ) {
-        let directionForShip = _.shuffle(DIRECTION_ARR[0]);
+        let directionForShip = DIRECTION_ARR.sort((a, b) => 0.5 - Math.random()).slice(0);
+        // let directionForShip = _.shuffle(DIRECTION_ARR[0]);
         const horizontalCoord = generateRandomCoordinates(boardComponent, SHIPS_OBJ.ship, directionForShip);
         const coordX = horizontalCoord[0];
         const coordY = horizontalCoord[1];
         if (directionForShip === 'horizontal') {
             for (let i = coordX; i < coordX + SHIPS_OBJ.ship; i++) {
                 boardComponent[i][coordY] = 'Y';
+                
             }
         } else if (directionForShip === 'vertical') {
             for (let i = coordY; i < coordY + SHIPS_OBJ.ship; i++) {
@@ -101,4 +115,5 @@ export const placingShips = (boardComponent) => {
             }
         }
     }
+    return boardComponent;
 } 
