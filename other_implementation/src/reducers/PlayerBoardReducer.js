@@ -5,6 +5,8 @@ export const SHIPS_OBJ = {
     aircraft: 5,
 }
 
+export const computerMoves = [];
+
 export const DIRECTION_ARR = ['horizontal', 'vertical'];
 
 const defaultState = {
@@ -83,6 +85,15 @@ export const generateRandomNumber = (start, end) => {
     return Math.floor(Math.random() * (end - start + 1) + start);
 }
 
+export const checkIfValidCoordinate = (x, y) => {
+    for (let position in computerMoves) {
+        if ([x, y] === position) {
+            return false;
+        }
+    }
+    return true;
+}
+
 export default function PlayerBoardReducer(state, action) {
     
     if (state === undefined) {
@@ -101,7 +112,14 @@ export default function PlayerBoardReducer(state, action) {
         const boardType = action.boardType;
 
         if (boardType === 'computer') {
-            return state;
+            // const xCoord = generateRandomNumber(0, state.length);
+            // const yCoord = generateRandomNumber(0, state.length);
+            // while (checkIfValidCoordinate != true) {
+            //     const xCoord = generateRandomNumber(0, state.length);
+            //     const yCoord = generateRandomNumber(0, state.length);
+            // }
+            // state[xCoord][yCoord] = 'Y';
+            return [...state];
         }
         // if (value === 'X') {
         //     state[action.x][action.y] = 'O';

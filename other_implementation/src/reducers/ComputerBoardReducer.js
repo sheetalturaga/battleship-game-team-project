@@ -33,7 +33,9 @@ function generateComputerBoard() {
         ['', '', '', '', '', '', '', '', '', ''],
         ['', '', '', '', '', '', '', '', '', ''],
         ['', '', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '', '']]
+        ['', '', '', '', '', '', '', '', '', '']],
+  
+
     }
     // insert random boats
     // for (let row = 0; row < defaultState.gameBoard.length; row++) {
@@ -43,7 +45,7 @@ function generateComputerBoard() {
     // }
     let gameBoardPlacerHolder = defaultState.gameBoard;
     // defaultState.gameBoard = placeshipfunction(gameBoardPlacerHolder)
-    
+
     // TODO OVERLAPPING SHIP COORDINATES
     for (let ship in SHIPS_OBJ) {
         let directionForShip = DIRECTION_ARR[Math.floor((Math.random()*DIRECTION_ARR.length))];
@@ -90,16 +92,12 @@ export const generateRandomNumber = (start, end) => {
 }
 
 export default function ComputerBoardReducer(state, action) {
-    
     if (state === undefined) {
         return generateComputerBoard()
-
     }
-
     if (action.type === "CREATE_GAME_BOARD") {
         alert("created a game board!")
     }
-
     if (action.type === 'player-turn') {
         const value = state[action.x][action.y];
         const boardType = action.boardType;
@@ -114,7 +112,6 @@ export default function ComputerBoardReducer(state, action) {
             state[action.x][action.y] = 'X';
         }
         // check winning condition
-
         return [...state];
     }
 
