@@ -5,6 +5,8 @@ export const SHIPS_OBJ = {
     aircraft: 5,
 }
 
+export const DIRECTION_ARR = ['horizontal', 'vertical'];
+
 const defaultState = {
     count: 0,
     gameBoard: [['', '', '', '', '', '', '', '', '', ''],
@@ -33,15 +35,53 @@ function generatePlayerBoard() {
         ['', '', '', '', '', '', '', '', '', ''],
         ['', '', '', '', '', '', '', '', '', '']]
     }
-    for (let row = 0; row < defaultState.gameBoard.length; row++) {
-        for (let column = 0; column < defaultState.gameBoard[0].length; column++) {
-            defaultState.gameBoard[row][0] = 'Y';
+    let gameBoardPlacerHolder = defaultState.gameBoard;
+    // defaultState.gameBoard = placeshipfunction(gameBoardPlacerHolder)
+    
+    // TODO OVERLAPPING SHIP COORDINATES
+    for (let ship in SHIPS_OBJ) {
+        let directionForShip = DIRECTION_ARR[Math.floor((Math.random()*DIRECTION_ARR.length))];
+        
+
+        // console.log(directionForShip);
+        const horizontalCoord = generateRandomCoordinates(gameBoardPlacerHolder, SHIPS_OBJ[ship], directionForShip);
+        let coordX = horizontalCoord[0];
+        // console.log("ship length: " + SHIPS_OBJ[ship] + "coordx " + coordX)
+        let coordY = horizontalCoord[1];
+        // console.log("coordy " + coordY)
+        if (directionForShip === 'horizontal') {
+            for (let i = coordX; i < coordX + SHIPS_OBJ[ship]; i++) {
+                defaultState.gameBoard[i][coordY] = 'Y';
+            }
+        } else {
+            // console.log("vertical HERE");
+            for (let i = coordY; i < coordY + SHIPS_OBJ[ship]; i++) {
+                defaultState.gameBoard[coordX][i] = 'Y';
+            }
         }
     }
     return defaultState.gameBoard;
 }
 
+function generateRandomCoordinates(gameboard, length, directionForShip){
+    let x = 0;
+    let y = 0;
+    // && length <= gameboard.length && length > gameboard[0].length
+    if (directionForShip === 'horizontal') {
+        x = generateRandomNumber(0, gameboard.length - length);
+        y = generateRandomNumber(0, gameboard.length - 1);
+    }
+    else {
+        x = generateRandomNumber(0, gameboard.length - 1);
+        y = generateRandomNumber(0, gameboard.length - length);
+    }
+    // coordsOfShipsPlaced.push(xyToIndex(x, y))
+    return [x, y]
+}
 
+export const generateRandomNumber = (start, end) => {
+    return Math.floor(Math.random() * (end - start + 1) + start);
+}
 
 export default function PlayerBoardReducer(state, action) {
     
