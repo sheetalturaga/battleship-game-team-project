@@ -21,6 +21,7 @@ export const turns = ["player", "computer"];
 export function Square(props) {
     const [globalCountState, globalCountDispatch] = useContext(BoardClickCountContext);
     let symbol = props.symbol;
+    const boardType = props.boardType;
     // useEffect(() => alert(symbol + " just played"), [symbol]);
     // const [state, setState] = useState(props.symbol);
 
@@ -30,6 +31,8 @@ export function Square(props) {
         backgroundColor = 'player-miss';
     } else if (symbol === 'O') {
         backgroundColor = 'player-hit';
+    } else if (symbol === 'Y') {
+        backgroundColor = 'ship-color';
     }
 
     const dispatch = useDispatch();
@@ -39,6 +42,7 @@ export function Square(props) {
             type: 'player-turn',
             x: props.x,
             y: props.y,
+            boardType
         })
         globalCountDispatch({
             type: "boardClick",

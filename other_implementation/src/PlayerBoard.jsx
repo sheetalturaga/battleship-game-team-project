@@ -22,7 +22,7 @@ export default function PlayerBoard() {
     for (let i = 0; i < 10; i++) {
         let row = boardState[i];
         for (let j = 0; j < 10; j++) {
-            boardComponent.push((<Square symbol={boardState[i][j]} x={i} y={j} />))
+            boardComponent.push((<Square symbol={boardState[i][j]} x={i} y={j} boardType = "player"/>))
         }
     }
 
