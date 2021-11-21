@@ -33,6 +33,8 @@ export function Square(props) {
         backgroundColor = 'player-hit';
     } else if (symbol === 'Y') {
         backgroundColor = 'ship-color';
+    } else if (symbol === 'S') {
+        backgroundColor = 'destroyed-ship';
     }
 
     const dispatch = useDispatch();
