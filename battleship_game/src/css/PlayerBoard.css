@@ -1,5 +1,0 @@
-#playerboard {
-    display:grid;
-    grid-template-columns: repeat(10, 20px);
-    grid-template-rows: repeat(10, 20px);
-}
