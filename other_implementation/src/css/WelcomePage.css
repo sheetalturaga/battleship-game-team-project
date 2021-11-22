@@ -1,0 +1,92 @@
+#root {
+  /* background-color: antiquewhite; */
+  /* background-image: url("https://images.theconversation.com/files/223729/original/file-20180619-126566-1jxjod2.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"); */
+  background-image: url("https://wallpaperaccess.com/full/1486722.jpg");
+  background-position: center;
+  background-size: cover;
+  opacity: 0.7;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.WelcomePage buttonA {
+  width: 80%;
+  height: auto;
+  padding: 1rem 0;
+  /* margin: 0 30%; */
+}
+
+.WelcomePage buttonB {
+  width: 80%;
+  height: auto;
+  padding: 1rem 0;
+  /* margin: 0 30%; */
+}
+
+.WelcomePage buttonC {
+  width: 80%;
+  height: auto;
+  padding: 1rem 0;
+  /* margin: 0 30%; */
+}
+
+.WelcomePage {
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  background-color: lightcyan;
+  min-height: 60vh;
+  height: auto;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem 0;
+  border-radius: 10px;
+}
+
+.WelcomePage button a {
+  text-decoration: none;
+  color: black;
+}
+
+.WelcomePage a {
+  color: black;
+  text-decoration: none;
+  font-weight: 900;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.WelcomePage a:hover {
+  transform: scale(1.1);
+}
+
+ol {
+  list-style-type: none;
+  width: 100%;
+  text-align: center;
+  /* background-color: aqua; */
+  padding: 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+li {
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 80%;
+  /* background-color: green; */
+}
+
+h3 {
+  border-bottom: 1px solid white;
+}

@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import reducers from './reducers/reducers';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import WelcomePage from './WelcomePage';
+import Rules from './Rules';
 import { BoardClickCountProvider } from './BoardClickCountProvider';
 import Game from './Game';
 
@@ -16,12 +17,12 @@ const store = createStore(reducers);
 ReactDOM.render(
   <BoardClickCountProvider>
   <Provider store={store} >
-    <h4>Welcome to BattleShip</h4>
- 
     <Router>
-    <Link to={"/"}>Home</Link>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
+        <Route path="/gameboard/:rules" element={<Rules />} />
+        {/* <Route path="/gameboard/:normal-mode" element={<NormalGameMode />} />
+        <Route path="/gameboard/:normal-mode" element={<FreeGameMode />} /> */}
         <Route path="/gameBoard/:gameType" element={<Game />} />
       </Routes>
     </Router>
