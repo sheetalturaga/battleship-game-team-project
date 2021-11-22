@@ -17,7 +17,7 @@ export default function ComputerBoard() {
     const gameType = useParams().gameType;
     const clickCount = useSelector((state) => state.clickCount);
     const boardState = useSelector((state) => state.computerBoard);
-
+    useEffect(() => dispatch({type: "placeShips"}), []);
     const boardComponent = [];
 
     for (let i = 0; i < GAMEBOARD_LENGTH; i++) {
@@ -33,6 +33,7 @@ export default function ComputerBoard() {
             {/* <h1>{"Global State Counter: " + clickCountGlobalState}</h1> */}
                 <div id="board">
             {boardComponent}
+            {/* //dispatch action type */}
             </div>
             {/* <ResetButton text="Reset, pls"/>
             <ResetGameBoardOnly text="Game board only, pls" /> */}

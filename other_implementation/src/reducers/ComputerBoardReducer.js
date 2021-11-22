@@ -6,16 +6,17 @@
 //5. two game modes, free play and normal game
 //6.Overlapping ships
 import generateEmptyBoard from './ComputerBoardAction';
-import {incrementCounter, checkIfAllShipsHit, destroyShips, turnPlayerTurnFalse} from './ComputerBoardAction';
+import {incrementCounter, checkIfAllShipsHit, destroyShips, placeShipsOnBoard } from './ComputerBoardAction';
 
 
 export default function ComputerBoardReducer(state, action) {
     if (state === undefined) {
-        return generateEmptyBoard()
+        // change the action type to generate comp board
+        return generateEmptyBoard();
     }
-    if (action.type === "CREATE_GAME_BOARD") {
-        alert("created a game board!")
-    }
+    // if (action.type === "placeShips") {
+    //     return placeShipsOnBoard(state);
+    // }
     if (action.type === 'onClick') {
         const value = state.gameBoard[action.x][action.y]; //change state
         const boardType = action.boardType;
@@ -52,6 +53,8 @@ export default function ComputerBoardReducer(state, action) {
             }
         }
         return [...state];
+        // state.gameBoard = generateEmptyBoard();
+        // return state;
     }
     return state;
 }

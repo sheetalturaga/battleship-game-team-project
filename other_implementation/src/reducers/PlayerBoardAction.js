@@ -154,7 +154,7 @@ export const validCoordinate = (xCoord, yCoord, length, directionForShip) => {
 
 function generateShipCoordinates(ship, length, arrLength) {
         MAP_OF_SHIP_COORDS[ship].splice(0, arrLength - length); 
-    console.log(MAP_OF_SHIP_COORDS);
+    // console.log(MAP_OF_SHIP_COORDS);
 }
 
 function generateRandomCoordinates(gameboard, length, directionForShip){

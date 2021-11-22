@@ -75,25 +75,19 @@ export default function generateEmptyBoard() {
     }
 
     let gameBoardPlacerHolder = defaultState.gameBoard;
-    // let gameBoardPlacerHolder = defaultState.gameBoard;
-    // defaultState.gameBoard = placeshipfunction(gameBoardPlacerHolder)
+
     for (let row = 0; row < gameBoardPlacerHolder.length; row++) {
         for (let column = 0; column < gameBoardPlacerHolder.length; column++) {
             AVAILABLE_SPACES.push([row, column]);
         }
     }
-    //remove i, j from availabke spaces
-    //when generating coords, check if i, j exist, if it doesnt then use function to check that the spaces are available for the direction
-    // TODO OVERLAPPING SHIP COORDINATES
     for (let ship in SHIPS_OBJ) {
         let directionForShip = DIRECTION_ARR[Math.floor((Math.random()*DIRECTION_ARR.length))];
         let horizontalCoord = generateRandomCoordinates(gameBoardPlacerHolder, SHIPS_OBJ[ship], directionForShip);
         let coordX = horizontalCoord[0];
         let coordY = horizontalCoord[1];
-        // console.log(AVAILABLE_SPACES);
         while (!validCoordinate(coordX, coordY, SHIPS_OBJ[ship], directionForShip)) {
             horizontalCoord = generateRandomCoordinates(gameBoardPlacerHolder, SHIPS_OBJ[ship], directionForShip);
-            // console.log("generating new coordinates");
             coordX = horizontalCoord[0];
             coordY = horizontalCoord[1];
             break;
@@ -103,7 +97,6 @@ export default function generateEmptyBoard() {
                 MAP_OF_SHIP_COORDS[ship].push([i, coordY]);
                 let index = findIndexToDelete(i, coordY);
                 AVAILABLE_SPACES.splice(index, 1);
-                // console.log("horizontal splice " + AVAILABLE_SPACES[0]);
                 defaultState.gameBoard[i][coordY] = UNIQUE_IDS[ship];
                 if (MAP_OF_SHIP_COORDS[ship].length === 3 * SHIPS_OBJ[ship]) {
                     generateShipCoordinates(ship, SHIPS_OBJ[ship], MAP_OF_SHIP_COORDS[ship].length);
@@ -114,7 +107,6 @@ export default function generateEmptyBoard() {
                 MAP_OF_SHIP_COORDS[ship].push([coordX, i]);
                 let index = findIndexToDelete(coordX, i);
                 AVAILABLE_SPACES.splice(index, 1);
-                // console.log("vertical splice " + AVAILABLE_SPACES[0]);
                 defaultState.gameBoard[coordX][i] = UNIQUE_IDS[ship];
                 if (MAP_OF_SHIP_COORDS[ship].length === 3 * SHIPS_OBJ[ship]) {
                     generateShipCoordinates(ship, SHIPS_OBJ[ship], MAP_OF_SHIP_COORDS[ship].length);
@@ -124,6 +116,55 @@ export default function generateEmptyBoard() {
     }
     return defaultState;
 }
+
+// export const placeShipsOnBoard = (state) => {
+//         let gameBoardPlacerHolder = state.gameBoard;
+//         console.log("available spaces " + AVAILABLE_SPACES);
+//         console.log(state.gameBoard);
+//         for (let ship in SHIPS_OBJ) {
+//         let directionForShip = DIRECTION_ARR[Math.floor((Math.random()*DIRECTION_ARR.length))];
+//         console.log("directionforship" + directionForShip);
+//         let horizontalCoord = generateRandomCoordinates(gameBoardPlacerHolder, SHIPS_OBJ[ship], directionForShip);
+//         console.log("horizontal " + horizontalCoord);
+//         let coordX = horizontalCoord[0];
+//         let coordY = horizontalCoord[1];
+//         console.log("xcoord " + coordX);
+//         console.log("ycoord " + coordY);
+//         // while (!validCoordinate(coordX, coordY, SHIPS_OBJ[ship], directionForShip)) {
+//         //     horizontalCoord = generateRandomCoordinates(gameBoardPlacerHolder, SHIPS_OBJ[ship], directionForShip);
+//         //     coordX = horizontalCoord[0];
+//         //     coordY = horizontalCoord[1];
+//         //     break;
+//         // } 
+//         if (directionForShip === 'horizontal') {
+//             console.log("here");
+//             for (let i = coordX; i < coordX + SHIPS_OBJ[ship]; i++) {
+//                 MAP_OF_SHIP_COORDS[ship].push([i, coordY]);
+//                 let index = findIndexToDelete(i, coordY);
+//                 AVAILABLE_SPACES.splice(index, 1);
+//                 console.log(AVAILABLE_SPACES);
+//                 state.gameBoard[i][coordY] = UNIQUE_IDS[ship];
+//                 console.log("hello");
+//                 if (MAP_OF_SHIP_COORDS[ship].length === 3 * SHIPS_OBJ[ship]) {
+//                     generateShipCoordinates(ship, SHIPS_OBJ[ship], MAP_OF_SHIP_COORDS[ship].length);
+//                 }
+//             } 
+//         }else {
+//             for (let i = coordY; i < coordY + SHIPS_OBJ[ship]; i++) {
+//                 MAP_OF_SHIP_COORDS[ship].push([coordX, i]);
+//                 let index = findIndexToDelete(coordX, i);
+//                 AVAILABLE_SPACES.splice(index, 1);
+//                 console.log(AVAILABLE_SPACES);
+//                 state.gameBoard[coordX][i] = UNIQUE_IDS[ship];
+//                 console.log("hewwo");
+//                 if (MAP_OF_SHIP_COORDS[ship].length === 3 * SHIPS_OBJ[ship]) {
+//                     generateShipCoordinates(ship, SHIPS_OBJ[ship], MAP_OF_SHIP_COORDS[ship].length);
+//                 }
+//             }
+//         }
+//         return state;
+//     }
+// }
 
 function findIndexToDelete(xCoord, yCoord) {
     for (let i = 0; i < SPACE_LENGTH; i++) {
@@ -170,12 +211,12 @@ function generateRandomCoordinates(gameboard, length, directionForShip){
     let x = 0;
     let y = 0;
     if (directionForShip === 'horizontal') {
-        x = generateRandomNumber(0, gameboard.length - length);
-        y = generateRandomNumber(0, gameboard.length - 1);
+        x = generateRandomNumber(0, gameboard.length - length - 1);
+        y = generateRandomNumber(0, gameboard.length - 2);
     }
     else {
-        x = generateRandomNumber(0, gameboard.length - 1);
-        y = generateRandomNumber(0, gameboard.length - length);
+        x = generateRandomNumber(0, gameboard.length - 2);
+        y = generateRandomNumber(0, gameboard.length - length - 1);
     }
     return [x, y]
 }
