@@ -28,6 +28,14 @@ export const COUNTER = {
     aircraft: 0
 }
 
+// export const TURN = {
+//     isPlayerTurn: true
+// }
+
+// export function turnPlayerTurnFalse() {
+//     TURN.isPlayerTurn = false;
+// }
+
 export const DIRECTION_ARR = ['horizontal', 'vertical'];
 
 export const AVAILABLE_SPACES = [];
@@ -114,8 +122,7 @@ export default function generateEmptyBoard() {
             }
         }
     }
-
-    return defaultState.gameBoard;
+    return defaultState;
 }
 
 function findIndexToDelete(xCoord, yCoord) {
@@ -195,6 +202,6 @@ export const destroyShips = (state, ship) => {
     }
 }
 
-function playerTurn() {
+// function playerTurn() {
 
-}
+// }

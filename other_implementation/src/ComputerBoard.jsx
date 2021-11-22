@@ -13,19 +13,20 @@ export default function ComputerBoard() {
     const [clickCountGlobalState, countDispatch] = useContext(BoardClickCountContext);
     const dispatch = useDispatch()
     const gameType = useParams().gameType;
-    const clickCount = useSelector((state) => state.clickCount)
-    const boardState = useSelector((state) => state.computerBoard)
+    const clickCount = useSelector((state) => state.clickCount);
+    const boardState = useSelector((state) => state.computerBoard);
     // const board = boardState.ga
     // boardAction[gameBoard];
     // useEffect(() => dispatch({type: "CREATE_GAME_BOARD", gameType}), [])
+    // const {boardAction.gameBoard}=  boardState;
     const boardComponent = [];
 
     for (let i = 0; i < 10; i++) {
-        let row = boardState[i];
         for (let j = 0; j < 10; j++) {
-            boardComponent.push((<Square symbol={boardState[i][j]} x={i} y={j} boardType = "computer"/>))
+            boardComponent.push((<Square symbol={boardState.gameBoard[i][j]} x={i} y={j} boardType = "computer"/>))
         }
     }
+    
     // const [state, dispatch] = useReducer((state, action) => { 
     //     const { type } = action; switch(action) { 
     //         case 'action description': 

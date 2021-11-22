@@ -6,7 +6,7 @@
 //5. two game modes, free play and normal game
 //6.Overlapping ships
 import generateEmptyBoard from './ComputerBoardAction';
-import {incrementCounter, checkIfAllShipsHit, destroyShips} from './ComputerBoardAction';
+import {incrementCounter, checkIfAllShipsHit, destroyShips, turnPlayerTurnFalse} from './ComputerBoardAction';
 
 
 export default function ComputerBoardReducer(state, action) {
@@ -17,32 +17,32 @@ export default function ComputerBoardReducer(state, action) {
         alert("created a game board!")
     }
     if (action.type === 'onClick') {
-        const value = state[action.x][action.y]; //change state
+        const value = state.gameBoard[action.x][action.y]; //change state
         const boardType = action.boardType;
         if (boardType === 'player') {
             return state;
         }
         if (value === 'sc') {
             incrementCounter('scout');
-            checkIfAllShipsHit('scout') ? destroyShips(state, 'scout') : state[action.x][action.y] = 'O';
+            checkIfAllShipsHit('scout') ? destroyShips(state, 'scout') : state.gameBoard[action.x][action.y] = 'O';
         } else if (value === 'sb') {
             incrementCounter('submarine');
-            checkIfAllShipsHit('submarine') ? destroyShips(state, 'submarine') : state[action.x][action.y] = 'O';
+            checkIfAllShipsHit('submarine') ? destroyShips(state, 'submarine') : state.gameBoard[action.x][action.y] = 'O';
         } else if (value === 'de') {
             incrementCounter('destroyer');
-            checkIfAllShipsHit('destroyer') ? destroyShips(state, 'destroyer') : state[action.x][action.y] = 'O';
+            checkIfAllShipsHit('destroyer') ? destroyShips(state, 'destroyer') : state.gameBoard[action.x][action.y] = 'O';
         } else if (value === 'ac') {
             incrementCounter('aircraft');
-            checkIfAllShipsHit('aircraft') ? destroyShips(state, 'aircraft') : state[action.x][action.y] = 'O';
+            checkIfAllShipsHit('aircraft') ? destroyShips(state, 'aircraft') : state.gameBoard[action.x][action.y] = 'O';
         } else if (value === 'O') {
-            state[action.x][action.y] = 'O';
+            state.gameBoard[action.x][action.y] = 'O';
         } else {
-            state[action.x][action.y] = 'X';
+            state.gameBoard[action.x][action.y] = 'X';
         }
         
-        
+        // turnPlayerTurnFalse();
         // check winning condition
-        return [...state];
+        return [state.count, ...state.gameBoard, state.isPlayerTurn];
     }
 
     if (action.type === 'RESET' || action.type === 'RESET_GAMEBOARD_ONLY') {
