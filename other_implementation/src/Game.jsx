@@ -5,11 +5,12 @@ import PlayerBoard from './PlayerBoard';
 import ComputerBoard from './ComputerBoard';
 import './css/Game.css';
 import ResetButton from './ResetButton';
+import { useState } from 'react';
 // import ResetGameBoardOnly from './ResetGameBoardOnlyFunction'
 // import Board from './Board';
 
 export default function Game() {
-    
+    // const [playerTurn, setPlayer] = useState('player')
     return (
         <div>
             <div class = "container">

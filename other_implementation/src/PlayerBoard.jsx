@@ -29,7 +29,7 @@ export default function PlayerBoard() {
     return (
         <div>
             {/* <h3>{"This is a " + gameType + " game"}</h3> */}
-            <h1>{clickCount}</h1>
+            {/* <h1>{clickCount}</h1> */}
             {/* <h1>{"Global State Counter: " + clickCountGlobalState}</h1> */}
                 <div id="board">
             {boardComponent}

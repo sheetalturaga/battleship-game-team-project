@@ -5,17 +5,6 @@ import { BoardClickCountContext } from './BoardClickCountProvider';
 import './css/Square.css';
 import { useState } from "react";
 
-
-// function exclamationReducer(state, action) {
-//     if (action.type === "CLICK") {
-//         if (action.symbol === 'X') {
-//             return '!'
-//         } else {
-//             return '?'
-//         }
-//     }
-//     return state;
-// }
 export const turns = ["player", "computer"];
 
 export function Square(props) {
@@ -31,7 +20,7 @@ export function Square(props) {
         backgroundColor = 'player-miss';
     } else if (symbol === 'O') {
         backgroundColor = 'player-hit';
-    } else if (symbol === 'Y') {
+    } else if (symbol === 'sc' || symbol === 'sb' || symbol === 'ac' || symbol === 'de') {
         backgroundColor = 'ship-color';
     } else if (symbol === 'S') {
         backgroundColor = 'destroyed-ship';
@@ -41,11 +30,12 @@ export function Square(props) {
 
     return (<div onClick={() => {
         dispatch({
-            type: 'player-turn',
+            type: 'onClick',
             x: props.x,
             y: props.y,
             boardType
         })
+
         globalCountDispatch({
             type: "boardClick",
             symbol,
