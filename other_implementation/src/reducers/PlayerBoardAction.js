@@ -32,6 +32,8 @@ export const DIRECTION_ARR = ['horizontal', 'vertical'];
 
 export const AVAILABLE_SPACES = [];
 
+export const TRACKING_USED_SQUARE = [];
+
 const defaultState = {
     count: 0,
     gameBoard: [['', '', '', '', '', '', '', '', '', ''],
@@ -131,7 +133,7 @@ function coordinateExists(xCoord, yCoord) {
     return false;
 }
 
-function validCoordinate(xCoord, yCoord, length, directionForShip) {
+export const validCoordinate = (xCoord, yCoord, length, directionForShip) => {
     if (directionForShip === 'horizontal') {
         for (let i = 0; i < length; i++) {
             if (!coordinateExists(xCoord, yCoord + i)) {
@@ -166,6 +168,7 @@ function generateRandomCoordinates(gameboard, length, directionForShip){
         x = generateRandomNumber(0, gameboard.length - 1);
         y = generateRandomNumber(0, gameboard.length - length);
     }
+
     return [x, y]
 }
 
@@ -191,6 +194,15 @@ export const destroyShips = (state, ship) => {
     }
 }
 
-function playerTurn() {
+export const addUsedSquare = (xCoord, yCoord) => {
+    TRACKING_USED_SQUARE.push([xCoord, yCoord]);
+}
 
+export const checkIfValidCoordinate = (state, xCoord, yCoord) => {
+    for (let i = 0; i < TRACKING_USED_SQUARE.length; i++) {
+        if (TRACKING_USED_SQUARE[i][0] === xCoord && TRACKING_USED_SQUARE[i][1] === yCoord) {
+            return false;
+        }
+    }
+    return true;
 }

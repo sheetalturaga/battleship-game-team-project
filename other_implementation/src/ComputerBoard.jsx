@@ -9,30 +9,23 @@ import { useDispatch } from 'react-redux';
 import boardAction from './reducers/ComputerBoardAction'
 import { BoardClickCountContext } from './BoardClickCountProvider';
 
+const GAMEBOARD_LENGTH = 10;
+
 export default function ComputerBoard() {
     const [clickCountGlobalState, countDispatch] = useContext(BoardClickCountContext);
     const dispatch = useDispatch()
     const gameType = useParams().gameType;
     const clickCount = useSelector((state) => state.clickCount);
     const boardState = useSelector((state) => state.computerBoard);
-    // const board = boardState.ga
-    // boardAction[gameBoard];
-    // useEffect(() => dispatch({type: "CREATE_GAME_BOARD", gameType}), [])
-    // const {boardAction.gameBoard}=  boardState;
+
     const boardComponent = [];
 
-    for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < 10; j++) {
+    for (let i = 0; i < GAMEBOARD_LENGTH; i++) {
+        for (let j = 0; j < GAMEBOARD_LENGTH; j++) {
             boardComponent.push((<Square symbol={boardState.gameBoard[i][j]} x={i} y={j} boardType = "computer"/>))
         }
     }
     
-    // const [state, dispatch] = useReducer((state, action) => { 
-    //     const { type } = action; switch(action) { 
-    //         case 'action description': 
-    //         const newState = 
-    //         return newState; 
-    //     default: throw new Error() } }, [])
     return (
         <div>
             {/* <h3>{"This is a " + gameType + " game"}</h3> */}

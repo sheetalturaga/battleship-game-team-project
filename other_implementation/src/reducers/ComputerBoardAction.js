@@ -198,10 +198,6 @@ export const destroyShips = (state, ship) => {
     for (let i = 0; i < SHIPS_OBJ[ship]; i++) {
         let coordX = MAP_OF_SHIP_COORDS[ship][i][0];
         let coordY = MAP_OF_SHIP_COORDS[ship][i][1];
-        state[coordX][coordY] = 'S';
+        state.gameBoard[coordX][coordY] = 'S';
     }
 }
-
-// function playerTurn() {
-
-// }

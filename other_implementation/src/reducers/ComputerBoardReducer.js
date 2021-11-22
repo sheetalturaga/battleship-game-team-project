@@ -1,7 +1,7 @@
 //TODO
-//1. Generate ai player
+//1. Generate ai player GOOD
 //2. turn sunk ships black GOOD
-//3. tracking GOOD and 
+//3. tracking GOOD
 //4. return winner 
 //5. two game modes, free play and normal game
 //6.Overlapping ships
@@ -39,10 +39,10 @@ export default function ComputerBoardReducer(state, action) {
         } else {
             state.gameBoard[action.x][action.y] = 'X';
         }
-        
+        state.isPlayerTurn = false;
         // turnPlayerTurnFalse();
         // check winning condition
-        return [state.count, ...state.gameBoard, state.isPlayerTurn];
+        return state;
     }
 
     if (action.type === 'RESET' || action.type === 'RESET_GAMEBOARD_ONLY') {

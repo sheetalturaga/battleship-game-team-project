@@ -1,6 +1,6 @@
 
-import generateEmptyBoard from './PlayerBoardAction';
-import {incrementCounter, checkIfAllShipsHit, destroyShips} from './PlayerBoardAction';
+import generateEmptyBoard, { checkIfValidCoordinate } from './PlayerBoardAction';
+import {generateRandomNumber, incrementCounter, checkIfAllShipsHit, destroyShips, addUsedSquare} from './PlayerBoardAction';
 
 export default function PlayerBoardReducer(state, action) {
     
@@ -20,22 +20,42 @@ export default function PlayerBoardReducer(state, action) {
         const boardType = action.boardType;
 
         if (boardType === 'computer') {
-            // const xCoord = generateRandomNumber(0, state.length);
-            // const yCoord = generateRandomNumber(0, state.length);
-            // while (checkIfValidCoordinate != true) {
-            //     const xCoord = generateRandomNumber(0, state.length);
-            //     const yCoord = generateRandomNumber(0, state.length);
-            // }
-            // state[xCoord][yCoord] = 'Y';
-            return [...state];
+            let xCoord = generateRandomNumber(0, state.length - 1);
+            let yCoord = generateRandomNumber(0, state.length - 1);
+            while (!checkIfValidCoordinate(state, xCoord, yCoord)) {
+                xCoord = generateRandomNumber(0, state.length - 1);
+                yCoord = generateRandomNumber(0, state.length - 1);
+                continue;
+            }
+
+            if (state[xCoord][yCoord] === 'sc') {
+                incrementCounter('scout');
+                checkIfAllShipsHit('scout') ? destroyShips(state, 'scout') : state[xCoord][yCoord] = 'O';
+                if (state[xCoord][yCoord] = 'O') {
+                addUsedSquare(xCoord, yCoord)}
+            } else if (state[xCoord][yCoord] === 'sb') {
+                incrementCounter('submarine');
+                checkIfAllShipsHit('submarine') ? destroyShips(state, 'submarine') : state[xCoord][yCoord] = 'O';
+                if (state[xCoord][yCoord] = 'O') {
+                    addUsedSquare(xCoord, yCoord)}
+            } else if (state[xCoord][yCoord] === 'de') {
+                incrementCounter('destroyer');
+                checkIfAllShipsHit('destroyer') ? destroyShips(state, 'destroyer') : state[xCoord][yCoord] = 'O';
+                if (state[xCoord][yCoord] = 'O') {
+                    addUsedSquare(xCoord, yCoord)}
+            } else if (state[xCoord][yCoord] === 'ac') {
+                incrementCounter('aircraft');
+                checkIfAllShipsHit('aircraft') ? destroyShips(state, 'aircraft') : state[xCoord][yCoord] = 'O';
+                if (state[xCoord][yCoord] = 'O') {
+                    addUsedSquare(xCoord, yCoord)}
+            
+                // } else if (state[xCoord][yCoord] === 'O') {
+            //     state[xCoord][yCoord] = 'O';
+            } else {
+                state[xCoord][yCoord] = 'X';
+                addUsedSquare(xCoord, yCoord);
+            }
         }
-        
-        // if (value === 'X') {
-        //     state[action.x][action.y] = 'O';
-        // } else {
-        //     state[action.x][action.y] = 'X';
-        // }
-        // check winning condition
 
         return [...state];
     }
