@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Board from './Board'
 import { createStore} from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers/reducers';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import WelcomePage from './WelcomePage';
 import Rules from './Rules';
 import { BoardClickCountProvider } from './BoardClickCountProvider';
-import Game from './Game';
+import NormalGameMode from './NormalGameMode';
+import FreePlayMode from './FreePlayMode';
 
 
 const store = createStore(reducers);
@@ -21,9 +21,8 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/gameboard/:rules" element={<Rules />} />
-        {/* <Route path="/gameboard/:normal-mode" element={<NormalGameMode />} />
-        <Route path="/gameboard/:normal-mode" element={<FreeGameMode />} /> */}
-        <Route path="/gameBoard/:gameType" element={<Game />} />
+        <Route path="/gameboard/:normalgamemode" element={<NormalGameMode />} />
+        <Route path="/gameboard/:freeplaymode" element={<FreePlayMode />} />
       </Routes>
     </Router>
   </Provider>
