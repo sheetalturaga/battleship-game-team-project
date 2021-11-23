@@ -2,4 +2,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: lightcyan;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 0;
+    border-radius: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+    .container {
+      flex-direction: column;
+    }
+  }

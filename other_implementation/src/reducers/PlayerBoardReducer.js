@@ -28,22 +28,22 @@ export default function PlayerBoardReducer(state, action) {
                 continue;
             }
 
-            if (state[xCoord][yCoord] === 'sc') {
+            if (state[xCoord][yCoord] === 'sct') {
                 incrementCounter('scout');
                 checkIfAllShipsHit('scout') ? destroyShips(state, 'scout') : state[xCoord][yCoord] = 'O';
                 if (state[xCoord][yCoord] = 'O') {
                 addUsedSquare(xCoord, yCoord)}
-            } else if (state[xCoord][yCoord] === 'sb') {
+            } else if (state[xCoord][yCoord] === 'sbe') {
                 incrementCounter('submarine');
                 checkIfAllShipsHit('submarine') ? destroyShips(state, 'submarine') : state[xCoord][yCoord] = 'O';
                 if (state[xCoord][yCoord] = 'O') {
                     addUsedSquare(xCoord, yCoord)}
-            } else if (state[xCoord][yCoord] === 'de') {
+            } else if (state[xCoord][yCoord] === 'der') {
                 incrementCounter('destroyer');
                 checkIfAllShipsHit('destroyer') ? destroyShips(state, 'destroyer') : state[xCoord][yCoord] = 'O';
                 if (state[xCoord][yCoord] = 'O') {
                     addUsedSquare(xCoord, yCoord)}
-            } else if (state[xCoord][yCoord] === 'ac') {
+            } else if (state[xCoord][yCoord] === 'act') {
                 incrementCounter('aircraft');
                 checkIfAllShipsHit('aircraft') ? destroyShips(state, 'aircraft') : state[xCoord][yCoord] = 'O';
                 if (state[xCoord][yCoord] = 'O') {
@@ -61,12 +61,8 @@ export default function PlayerBoardReducer(state, action) {
     }
 
     if (action.type === 'RESET' || action.type === 'RESET_GAMEBOARD_ONLY') {
-        for (let i = 0; i < state.length; i++) {
-            for (let j = 0; j < state.length; j++){
-                state[i][j] = '';
-            }
-        }
-        return [...state];
+        state = generateEmptyBoard();
+        return state;
     }
     return state;
 }

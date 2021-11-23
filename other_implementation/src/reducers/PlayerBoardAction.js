@@ -15,10 +15,10 @@ export const MAP_OF_SHIP_COORDS = {
 }
 
 export const UNIQUE_IDS = {
-    scout: 'sc',
-    submarine: 'sb',
-    destroyer: 'de',
-    aircraft: 'ac'
+    scout: 'sct',
+    submarine: 'sbe',
+    destroyer: 'der',
+    aircraft: 'act'
 }
 
 export const COUNTER = {

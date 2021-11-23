@@ -6,9 +6,12 @@ import ResetButton from './ResetButton';
 
 export default function FreePlayMode() {
     return (
+        <div>
             <div class = "container">
-                <div><ComputerBoard />ComputerBoard</div>
+                {/* <ResetGameBoardOnly text="Game board only, pls" /> */}
+                <div class = 'align-title'><ComputerBoard />Computer Board</div>
                 <ResetButton text="Reset Game"/>
             </div>
+        </div>
     )
 }

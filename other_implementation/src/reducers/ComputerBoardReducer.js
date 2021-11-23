@@ -3,22 +3,18 @@
 //2. turn sunk ships black GOOD
 //3. tracking GOOD
 //4. return winner 
-//5. two game modes, free play and normal game
-//6.Overlapping ships
+//5. two game modes, free play and normal game GOOD
+//6. Overlapping ships
 import generateEmptyBoard from './ComputerBoardAction';
-import {incrementCounter, checkIfAllShipsHit, destroyShips, placeShipsOnBoard } from './ComputerBoardAction';
+import {resetCounter, resetMapOfShipCoords, incrementCounter, checkIfAllShipsHit, destroyShips} from './ComputerBoardAction';
 
 
 export default function ComputerBoardReducer(state, action) {
     if (state === undefined) {
-        // change the action type to generate comp board
         return generateEmptyBoard();
     }
-    // if (action.type === "placeShips") {
-    //     return placeShipsOnBoard(state);
-    // }
     if (action.type === 'onClick') {
-        const value = state.gameBoard[action.x][action.y]; //change state
+        const value = state.gameBoard[action.x][action.y];
         const boardType = action.boardType;
         if (boardType === 'player') {
             return state;
@@ -41,20 +37,14 @@ export default function ComputerBoardReducer(state, action) {
             state.gameBoard[action.x][action.y] = 'X';
         }
         state.isPlayerTurn = false;
-        // turnPlayerTurnFalse();
-        // check winning condition
         return state;
     }
 
     if (action.type === 'RESET' || action.type === 'RESET_GAMEBOARD_ONLY') {
-        for (let i = 0; i < state.length; i++) {
-            for (let j = 0; j < state.length; j++){
-                state[i][j] = '';
-            }
-        }
-        return [...state];
-        // state.gameBoard = generateEmptyBoard();
-        // return state;
+        state = generateEmptyBoard();
+        resetMapOfShipCoords();
+        resetCounter();
+        return state;
     }
     return state;
 }

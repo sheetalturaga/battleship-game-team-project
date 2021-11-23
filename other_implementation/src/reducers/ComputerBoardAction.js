@@ -28,14 +28,6 @@ export const COUNTER = {
     aircraft: 0
 }
 
-// export const TURN = {
-//     isPlayerTurn: true
-// }
-
-// export function turnPlayerTurnFalse() {
-//     TURN.isPlayerTurn = false;
-// }
-
 export const DIRECTION_ARR = ['horizontal', 'vertical'];
 
 export const AVAILABLE_SPACES = [];
@@ -53,7 +45,6 @@ const defaultState = {
     ['', '', '', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', '', '', '']],
     isPlayerTurn: true,
-    //useselector, to check if t/f
 }
 
 export default function generateEmptyBoard() {
@@ -117,54 +108,22 @@ export default function generateEmptyBoard() {
     return defaultState;
 }
 
-// export const placeShipsOnBoard = (state) => {
-//         let gameBoardPlacerHolder = state.gameBoard;
-//         console.log("available spaces " + AVAILABLE_SPACES);
-//         console.log(state.gameBoard);
-//         for (let ship in SHIPS_OBJ) {
-//         let directionForShip = DIRECTION_ARR[Math.floor((Math.random()*DIRECTION_ARR.length))];
-//         console.log("directionforship" + directionForShip);
-//         let horizontalCoord = generateRandomCoordinates(gameBoardPlacerHolder, SHIPS_OBJ[ship], directionForShip);
-//         console.log("horizontal " + horizontalCoord);
-//         let coordX = horizontalCoord[0];
-//         let coordY = horizontalCoord[1];
-//         console.log("xcoord " + coordX);
-//         console.log("ycoord " + coordY);
-//         // while (!validCoordinate(coordX, coordY, SHIPS_OBJ[ship], directionForShip)) {
-//         //     horizontalCoord = generateRandomCoordinates(gameBoardPlacerHolder, SHIPS_OBJ[ship], directionForShip);
-//         //     coordX = horizontalCoord[0];
-//         //     coordY = horizontalCoord[1];
-//         //     break;
-//         // } 
-//         if (directionForShip === 'horizontal') {
-//             console.log("here");
-//             for (let i = coordX; i < coordX + SHIPS_OBJ[ship]; i++) {
-//                 MAP_OF_SHIP_COORDS[ship].push([i, coordY]);
-//                 let index = findIndexToDelete(i, coordY);
-//                 AVAILABLE_SPACES.splice(index, 1);
-//                 console.log(AVAILABLE_SPACES);
-//                 state.gameBoard[i][coordY] = UNIQUE_IDS[ship];
-//                 console.log("hello");
-//                 if (MAP_OF_SHIP_COORDS[ship].length === 3 * SHIPS_OBJ[ship]) {
-//                     generateShipCoordinates(ship, SHIPS_OBJ[ship], MAP_OF_SHIP_COORDS[ship].length);
-//                 }
-//             } 
-//         }else {
-//             for (let i = coordY; i < coordY + SHIPS_OBJ[ship]; i++) {
-//                 MAP_OF_SHIP_COORDS[ship].push([coordX, i]);
-//                 let index = findIndexToDelete(coordX, i);
-//                 AVAILABLE_SPACES.splice(index, 1);
-//                 console.log(AVAILABLE_SPACES);
-//                 state.gameBoard[coordX][i] = UNIQUE_IDS[ship];
-//                 console.log("hewwo");
-//                 if (MAP_OF_SHIP_COORDS[ship].length === 3 * SHIPS_OBJ[ship]) {
-//                     generateShipCoordinates(ship, SHIPS_OBJ[ship], MAP_OF_SHIP_COORDS[ship].length);
-//                 }
-//             }
-//         }
-//         return state;
-//     }
-// }
+export const resetMapOfShipCoords = () => {
+    Object.keys(MAP_OF_SHIP_COORDS).map(key => {
+      if (MAP_OF_SHIP_COORDS[key] instanceof Array) {
+        MAP_OF_SHIP_COORDS[key] = [];
+        }
+    })
+}
+
+
+export const resetCounter = () => {
+    Object.keys(COUNTER).map(key => {
+        if (COUNTER[key] instanceof Array) {
+            COUNTER[key] = 0;
+        }
+    })
+}
 
 function findIndexToDelete(xCoord, yCoord) {
     for (let i = 0; i < SPACE_LENGTH; i++) {

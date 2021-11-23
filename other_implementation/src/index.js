@@ -20,9 +20,9 @@ ReactDOM.render(
     <Router>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
+        <Route path="/gameBoard/NormalGameMode" element={<NormalGameMode />} />
+        <Route path="/gameBoard/FreePlayMode" element={<FreePlayMode />} />
         <Route path="/gameboard/:rules" element={<Rules />} />
-        <Route path="/gameboard/:normalgamemode" element={<NormalGameMode />} />
-        <Route path="/gameboard/:freeplaymode" element={<FreePlayMode />} />
       </Routes>
     </Router>
   </Provider>

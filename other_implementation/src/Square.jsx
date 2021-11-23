@@ -22,7 +22,9 @@ export function Square(props) {
         backgroundColor = 'player-hit';
     } else if (symbol === 'sc' || symbol === 'sb' || symbol === 'ac' || symbol === 'de') {
         backgroundColor = 'ship-color';
-    } else if (symbol === 'S') {
+    } else if (symbol === 'sct' || symbol === 'sbe' || symbol === 'act' || symbol === 'der') {
+        backgroundColor = 'player-ship-color';
+    }else if (symbol === 'S') {
         backgroundColor = 'destroyed-ship';
     }
 
@@ -41,7 +43,7 @@ export function Square(props) {
             symbol,
         })
     }
-    } id="square" class={backgroundColor}>
+    } id='square' class = {backgroundColor}>
         {symbol}
     </div>);
 }
