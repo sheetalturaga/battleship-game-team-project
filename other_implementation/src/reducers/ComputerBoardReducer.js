@@ -1,11 +1,18 @@
-
 import generateEmptyBoard from './ComputerBoardAction';
-import {resetCounter, resetMapOfShipCoords, incrementCounter, checkIfAllShipsHit, destroyShips} from './ComputerBoardAction';
+import {checkBoardIfValidShips, winOrLose, resetArray, resetCounter, resetMapOfShipCoords, incrementCounter, checkIfAllShipsHit, destroyShips} from './ComputerBoardAction';
+
 
 
 export default function ComputerBoardReducer(state, action) {
     if (state === undefined) {
-        return generateEmptyBoard();
+        state = generateEmptyBoard();
+        while (!checkBoardIfValidShips(state)) {
+            console.log("here");
+            resetArray();
+            resetMapOfShipCoords();
+            state = generateEmptyBoard();
+        }
+        return state;
     }
     if (action.type === 'onClick') {
         const value = state.gameBoard[action.x][action.y];
@@ -27,12 +34,21 @@ export default function ComputerBoardReducer(state, action) {
             checkIfAllShipsHit('aircraft') ? destroyShips(state, 'aircraft') : state.gameBoard[action.x][action.y] = 'O';
         } else if (value === 'O') {
             state.gameBoard[action.x][action.y] = 'O';
-        } else {
+        } else if (value === '') {
             state.gameBoard[action.x][action.y] = 'X';
+        } else {
+            if (winOrLose) {
+                alert ("Game Over! YOU WON!")
+            } else {
+                return state;
+            }
         }
         state.isPlayerTurn = false;
+        
         return state;
     }
+    
+    
 
     if (action.type === 'RESET' || action.type === 'RESET_GAMEBOARD_ONLY') {
         state = generateEmptyBoard();

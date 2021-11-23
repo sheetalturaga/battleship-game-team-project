@@ -1,4 +1,4 @@
-// import SmallerSquare from "./SmallerSquare";
+
 import React, { useContext, useReducer } from 'react';
 import { useDispatch } from 'react-redux';
 import { BoardClickCountContext } from './BoardClickCountProvider';

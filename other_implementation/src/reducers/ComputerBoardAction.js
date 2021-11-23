@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export const SPACE_LENGTH = 100;
 
 export const SHIPS_OBJ = {
@@ -31,6 +33,8 @@ export const COUNTER = {
 export const DIRECTION_ARR = ['horizontal', 'vertical'];
 
 export const AVAILABLE_SPACES = [];
+
+export const ARRAY_FROM_MAP = [];
 
 const defaultState = {
     count: 0,
@@ -89,6 +93,7 @@ export default function generateEmptyBoard() {
                 let index = findIndexToDelete(i, coordY);
                 AVAILABLE_SPACES.splice(index, 1);
                 defaultState.gameBoard[i][coordY] = UNIQUE_IDS[ship];
+                console.log("map of ship coords" + MAP_OF_SHIP_COORDS[ship]);
                 if (MAP_OF_SHIP_COORDS[ship].length === 3 * SHIPS_OBJ[ship]) {
                     generateShipCoordinates(ship, SHIPS_OBJ[ship], MAP_OF_SHIP_COORDS[ship].length);
                 }
@@ -99,11 +104,12 @@ export default function generateEmptyBoard() {
                 let index = findIndexToDelete(coordX, i);
                 AVAILABLE_SPACES.splice(index, 1);
                 defaultState.gameBoard[coordX][i] = UNIQUE_IDS[ship];
+                console.log("map of ship coords" + MAP_OF_SHIP_COORDS[ship]);
                 if (MAP_OF_SHIP_COORDS[ship].length === 3 * SHIPS_OBJ[ship]) {
                     generateShipCoordinates(ship, SHIPS_OBJ[ship], MAP_OF_SHIP_COORDS[ship].length);
                 }
             }
-        }
+        }        
     }
     return defaultState;
 }
@@ -123,6 +129,37 @@ export const resetCounter = () => {
             COUNTER[key] = 0;
         }
     })
+}
+
+export const resetArray = () => {
+    ARRAY_FROM_MAP = [];
+}
+
+export const convertMapToArray = () => {
+    for (let ship in MAP_OF_SHIP_COORDS) {
+        for (let i = 0; i < SHIPS_OBJ[ship]; i++) {
+            let xCoord = MAP_OF_SHIP_COORDS[ship][i][0];
+            let yCoord = MAP_OF_SHIP_COORDS[ship][i][1];
+            ARRAY_FROM_MAP.push([xCoord, yCoord]);
+        }
+    }
+    console.log("printing array of coords: " + ARRAY_FROM_MAP);
+}
+
+export const checkBoardIfValidShips = (state) => {
+    convertMapToArray();
+    for (let i = 0; i < ARRAY_FROM_MAP.length; i++) {
+        for (let j = i; j < ARRAY_FROM_MAP.length; j++) {
+            if (j === i) {
+                continue;
+            } else if (ARRAY_FROM_MAP[i] === ARRAY_FROM_MAP[j]) {
+                console.log("logging false");
+                return false;
+            }
+        }
+    }
+    console.log("logging true");
+    return true;
 }
 
 function findIndexToDelete(xCoord, yCoord) {
@@ -192,6 +229,15 @@ export const checkIfAllShipsHit = (ship) => {
     if (COUNTER[ship] === SHIPS_OBJ[ship]) {
         return true;
     }
+}
+
+export const winOrLose = () => {
+    for(let ship in SHIPS_OBJ) {
+        if (!checkIfAllShipsHit(ship)) {
+            return false
+        }
+    }
+    return true;
 }
 
 export const destroyShips = (state, ship) => {

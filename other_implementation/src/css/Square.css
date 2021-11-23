@@ -1,39 +1,39 @@
-
-#square{
-    height: 30px;
-    width: 30px;
-    border: 1px solid black;
-    /* transition: 0.2s; */
+#square {
+  height: 30px;
+  width: 30px;
+  border: 1px solid black;
+  /* transition: 0.2s; */
 }
 
 .background {
-    background-color: white;
+  background-color: white;
 }
 
-.ship-color{
-    background-color: white;
-    color:white;
+.ship-color {
+  background-color: white;
+  color: white;
 }
 
-.player-ship-color{
-    background-color: blue;
-    color:blue;
+.player-ship-color {
+  background-color: blue;
+  color: blue;
 }
 
-.player-hit{
-    background-color: red;
-    color: red;
+.player-hit {
+  background-color: red;
+  color: red;
 }
 
 .player-miss {
-    background-color: lightgray;
-    color: lightgray;
+  background-color: lightgray;
+  color: lightgray;
 }
 
-.destroyed-ship{
-    background-color: black;
+.destroyed-ship {
+  background-color: black;
 }
 
-/* .square a:hover {
-    transform: scale(1.1);
-  } */
+.background:hover {
+  background-color: lightgray;
+  z-index: 110;
+}

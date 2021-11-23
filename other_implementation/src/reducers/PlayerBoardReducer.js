@@ -1,18 +1,15 @@
-
 import generateEmptyBoard, { checkIfValidCoordinate } from './PlayerBoardAction';
 import {generateRandomNumber, incrementCounter, checkIfAllShipsHit, destroyShips, addUsedSquare} from './PlayerBoardAction';
 
 export default function PlayerBoardReducer(state, action) {
     
     if (state === undefined) {
-        return generateEmptyBoard()
-
+        return generateEmptyBoard();
     }
 
     if (action.type === "CREATE_GAME_BOARD") {
         alert("created a game board!")
     }
-
     if (action.type === 'onClick') {
         const value = state[action.x][action.y];
         const boardType = action.boardType;
@@ -29,26 +26,30 @@ export default function PlayerBoardReducer(state, action) {
             if (state[xCoord][yCoord] === 'sct') {
                 incrementCounter('scout');
                 checkIfAllShipsHit('scout') ? destroyShips(state, 'scout') : state[xCoord][yCoord] = 'O';
-                if (state[xCoord][yCoord] === 'O') {
+                if (state[xCoord][yCoord] = 'O') {
                 addUsedSquare(xCoord, yCoord)}
             } else if (state[xCoord][yCoord] === 'sbe') {
                 incrementCounter('submarine');
                 checkIfAllShipsHit('submarine') ? destroyShips(state, 'submarine') : state[xCoord][yCoord] = 'O';
-                if (state[xCoord][yCoord] === 'O') {
+                if (state[xCoord][yCoord] = 'O') {
                     addUsedSquare(xCoord, yCoord)}
             } else if (state[xCoord][yCoord] === 'der') {
                 incrementCounter('destroyer');
                 checkIfAllShipsHit('destroyer') ? destroyShips(state, 'destroyer') : state[xCoord][yCoord] = 'O';
-                if (state[xCoord][yCoord] === 'O') {
+                if (state[xCoord][yCoord] = 'O') {
                     addUsedSquare(xCoord, yCoord)}
             } else if (state[xCoord][yCoord] === 'act') {
                 incrementCounter('aircraft');
                 checkIfAllShipsHit('aircraft') ? destroyShips(state, 'aircraft') : state[xCoord][yCoord] = 'O';
-                if (state[xCoord][yCoord] === 'O') {
-                    addUsedSquare(xCoord, yCoord)}
+                if (state[xCoord][yCoord] = 'O') {
+                    addUsedSquare(xCoord, yCoord)
+                }
             } else {
                 state[xCoord][yCoord] = 'X';
                 addUsedSquare(xCoord, yCoord);
+            }
+            if (checkIfAllShipsHit('scout') && checkIfAllShipsHit('submarine') && checkIfAllShipsHit('aircraft') && checkIfAllShipsHit('destroyer')) {
+                alert("Game Over! YOU WON!")
             }
         }
 

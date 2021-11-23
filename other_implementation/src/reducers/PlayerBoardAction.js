@@ -34,6 +34,8 @@ export const AVAILABLE_SPACES = [];
 
 export const TRACKING_USED_SQUARE = [];
 
+
+
 const defaultState = {
     count: 0,
     gameBoard: [['', '', '', '', '', '', '', '', '', ''],
@@ -76,6 +78,7 @@ export default function generateEmptyBoard() {
         let horizontalCoord = generateRandomCoordinates(gameBoardPlacerHolder, SHIPS_OBJ[ship], directionForShip);
         let coordX = horizontalCoord[0];
         let coordY = horizontalCoord[1];
+
         while (!validCoordinate(coordX, coordY, SHIPS_OBJ[ship], directionForShip)) {
             horizontalCoord = generateRandomCoordinates(gameBoardPlacerHolder, SHIPS_OBJ[ship], directionForShip);
             coordX = horizontalCoord[0];
@@ -87,6 +90,7 @@ export default function generateEmptyBoard() {
                 MAP_OF_SHIP_COORDS[ship].push([i, coordY]);
                 let index = findIndexToDelete(i, coordY);
                 AVAILABLE_SPACES.splice(index, 1);
+                
                 defaultState.gameBoard[i][coordY] = UNIQUE_IDS[ship];
                 if (MAP_OF_SHIP_COORDS[ship].length === 3 * SHIPS_OBJ[ship]) {
                     generateShipCoordinates(ship, SHIPS_OBJ[ship], MAP_OF_SHIP_COORDS[ship].length);
@@ -97,6 +101,7 @@ export default function generateEmptyBoard() {
                 MAP_OF_SHIP_COORDS[ship].push([coordX, i]);
                 let index = findIndexToDelete(coordX, i);
                 AVAILABLE_SPACES.splice(index, 1);
+                
                 defaultState.gameBoard[coordX][i] = UNIQUE_IDS[ship];
                 if (MAP_OF_SHIP_COORDS[ship].length === 3 * SHIPS_OBJ[ship]) {
                     generateShipCoordinates(ship, SHIPS_OBJ[ship], MAP_OF_SHIP_COORDS[ship].length);
@@ -107,6 +112,7 @@ export default function generateEmptyBoard() {
 
     return defaultState.gameBoard;
 }
+
 
 function findIndexToDelete(xCoord, yCoord) {
     for (let i = 0; i < SPACE_LENGTH; i++) {
