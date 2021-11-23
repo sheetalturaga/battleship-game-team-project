@@ -1,8 +1,6 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 
-
-export default function ResetButton(props) {
+export default function HomeButton(props) {
     const { text } = props;
 
     const dispatch = useDispatch();
@@ -10,7 +8,7 @@ export default function ResetButton(props) {
     return (
         <button onClick={
             () => dispatch({
-                type: "RESET",
+                type: "HOME",
             })
 
         }>

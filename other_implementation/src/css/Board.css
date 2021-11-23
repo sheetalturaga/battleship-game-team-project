@@ -1,22 +1,14 @@
 #board {
-
-    display: grid;
-    
-    margin: 0 2rem;
-    
-    width: 50vh;
-    
-    height: 50vh;
-    
-    /* background-color: yellow; */
-    
-    grid-template-columns: repeat(10, 1fr);
-    
-    grid-template-rows: repeat(10, 1fr);
-    
-    }
+  display: grid;
+  margin: 0 2rem;
+  width: 50vh;
+  height: 50vh;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
 
 .align-title {
-    text-align: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }

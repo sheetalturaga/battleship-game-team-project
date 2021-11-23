@@ -1,17 +1,29 @@
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: lightcyan;
-    height: auto;
-    flex-direction: row;
-    align-items: center;
-    padding: 1rem 0;
-    border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightcyan;
+  height: auto;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 0;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-padding {
+  padding: 1rem;
 }
 
 @media only screen and (max-width: 600px) {
-    .container {
-      flex-direction: column;
-    }
+  .container {
+    flex-direction: column;
   }
+}

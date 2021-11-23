@@ -1,10 +1,4 @@
-//TODO
-//1. Generate ai player GOOD
-//2. turn sunk ships black GOOD
-//3. tracking GOOD
-//4. return winner 
-//5. two game modes, free play and normal game GOOD
-//6. Overlapping ships
+
 import generateEmptyBoard from './ComputerBoardAction';
 import {resetCounter, resetMapOfShipCoords, incrementCounter, checkIfAllShipsHit, destroyShips} from './ComputerBoardAction';
 

@@ -20,10 +20,6 @@ export default function Rules() {
         </ol>
 
         <Link to={"/"}>Home</Link>
-            {/* <button type = "button">
-             <Link to={"/gameBoard/Rules"}>Rules</Link>
-            </button> */}
-        
     </div>)
 
 }

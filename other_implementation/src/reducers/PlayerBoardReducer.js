@@ -12,9 +12,7 @@ export default function PlayerBoardReducer(state, action) {
     if (action.type === "CREATE_GAME_BOARD") {
         alert("created a game board!")
     }
-    // if (action.boardType === "computer") {
-    //     return state;
-    // }
+
     if (action.type === 'onClick') {
         const value = state[action.x][action.y];
         const boardType = action.boardType;
@@ -31,26 +29,23 @@ export default function PlayerBoardReducer(state, action) {
             if (state[xCoord][yCoord] === 'sct') {
                 incrementCounter('scout');
                 checkIfAllShipsHit('scout') ? destroyShips(state, 'scout') : state[xCoord][yCoord] = 'O';
-                if (state[xCoord][yCoord] = 'O') {
+                if (state[xCoord][yCoord] === 'O') {
                 addUsedSquare(xCoord, yCoord)}
             } else if (state[xCoord][yCoord] === 'sbe') {
                 incrementCounter('submarine');
                 checkIfAllShipsHit('submarine') ? destroyShips(state, 'submarine') : state[xCoord][yCoord] = 'O';
-                if (state[xCoord][yCoord] = 'O') {
+                if (state[xCoord][yCoord] === 'O') {
                     addUsedSquare(xCoord, yCoord)}
             } else if (state[xCoord][yCoord] === 'der') {
                 incrementCounter('destroyer');
                 checkIfAllShipsHit('destroyer') ? destroyShips(state, 'destroyer') : state[xCoord][yCoord] = 'O';
-                if (state[xCoord][yCoord] = 'O') {
+                if (state[xCoord][yCoord] === 'O') {
                     addUsedSquare(xCoord, yCoord)}
             } else if (state[xCoord][yCoord] === 'act') {
                 incrementCounter('aircraft');
                 checkIfAllShipsHit('aircraft') ? destroyShips(state, 'aircraft') : state[xCoord][yCoord] = 'O';
-                if (state[xCoord][yCoord] = 'O') {
+                if (state[xCoord][yCoord] === 'O') {
                     addUsedSquare(xCoord, yCoord)}
-            
-                // } else if (state[xCoord][yCoord] === 'O') {
-            //     state[xCoord][yCoord] = 'O';
             } else {
                 state[xCoord][yCoord] = 'X';
                 addUsedSquare(xCoord, yCoord);
